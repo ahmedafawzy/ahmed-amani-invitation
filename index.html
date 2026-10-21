@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4d6cc">
+  <meta name="description" content="Ahmed & Amany — Wedding Invitation">
+  <title>Ahmed & Amany | Wedding Invitation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap');
+
+    :root {
+      --cream: #fff8f1;
+      --rose: #e9b6b0;
+      --rose-dark: #8c4b51;
+      --ink: #33252a;
+      --gold: #b68b63;
+      --glass: rgba(255,255,255,.58);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .opening {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.9), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(232,182,176,.45), transparent 35%),
+        linear-gradient(145deg, #f8e2c8, #f5c9c8 55%, #f9dfcc);
+    }
+
+    .opening::before, .opening::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(140,75,81,.18);
+      border-radius: 50%;
+      animation: float 9s ease-in-out infinite;
+    }
+    .opening::before { width: 70vw; height: 70vw; max-width: 700px; max-height: 700px; }
+    .opening::after { width: 90vw; height: 90vw; max-width: 900px; max-height: 900px; animation-delay: -3s; }
+
+    .opening-card {
+      width: min(92vw, 620px);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: reveal 1.4s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    .eyebrow {
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      opacity: .72;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-weight: 400;
+      font-size: clamp(4.5rem, 17vw, 8rem);
+      line-height: .9;
+      margin: 0;
+      color: var(--rose-dark);
+    }
+
+    .amp {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.2rem;
+      vertical-align: middle;
+      margin: 0 .25rem;
+      color: var(--gold);
+    }
+
+    .subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.25rem, 4vw, 1.8rem);
+      margin: 1.6rem 0 .4rem;
+    }
+
+    .forever {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose-dark);
+      font-size: 2.3rem;
+    }
+
+    .scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: 2.5rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      opacity: .75;
+    }
+    .scroll span {
+      width: 30px; height: 48px; border: 1px solid currentColor;
+      border-radius: 20px; position: relative;
+    }
+    .scroll span::after {
+      content: ""; width: 4px; height: 8px; border-radius: 4px;
+      background: currentColor; position: absolute; left: 50%; top: 8px;
+      transform: translateX(-50%); animation: wheel 1.7s infinite;
+    }
+
+    section { padding: 90px 20px; }
+    .container { width: min(100%, 980px); margin: auto; }
+
+    .art {
+      width: min(100%, 760px);
+      margin: auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(80,40,40,.18);
+      transform: translateY(0);
+    }
+    .art img { width: 100%; display: block; }
+
+    .intro {
+      text-align: center;
+      background: linear-gradient(#fff8f1, #f8e1dc);
+    }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .7rem;
+      color: var(--rose-dark);
+    }
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.7rem, 9vw, 4.5rem);
+      font-weight: 500;
+      margin: .5rem 0 1rem;
+    }
+    .love {
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.9;
+      color: #624f53;
+    }
+
+    .details {
+      background: #fff;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .detail {
+      padding: 30px 18px;
+      text-align: center;
+      border: 1px solid rgba(140,75,81,.13);
+      background: linear-gradient(145deg, #fff, #fff8f5);
+      border-radius: 22px;
+    }
+    .detail-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .detail-label {
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .62rem;
+      color: #9b7779;
+    }
+    .detail-value {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.55rem;
+      margin-top: 8px;
+    }
+
+    .countdown {
+      background: #33252a;
+      color: white;
+      text-align: center;
+    }
+    .countdown h2 { color: #f8ddd8; }
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 650px;
+      margin: 35px auto 0;
+    }
+    .time-box {
+      padding: 20px 8px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+    }
+    .time-number {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 7vw, 3.7rem);
+    }
+    .time-label {
+      font-size: .6rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+
+    .venue {
+      text-align: center;
+      background: linear-gradient(145deg, #f6ded7, #fff8f1);
+    }
+    .venue-card {
+      max-width: 720px;
+      margin: 30px auto 0;
+      padding: 45px 25px;
+      border-radius: 30px;
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 20px 70px rgba(100,55,55,.12);
+    }
+    .venue-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.5rem;
+      color: var(--rose-dark);
+    }
+    .venue-address { margin: 10px 0 25px; color: #685659; }
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      background: var(--rose-dark);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .map-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(140,75,81,.28); }
+
+    .closing {
+      min-height: 75svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(51,37,42,.55), rgba(51,37,42,.75)),
+        url("invitation.jpg") center/cover;
+      color: white;
+    }
+    .closing h2 { color: white; margin-bottom: 0; }
+    .closing .forever { color: #f3c8c0; font-size: 3rem; }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #33252a;
+      color: rgba(255,255,255,.55);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes reveal { from { opacity: 0; transform: translateY(35px) scale(.98); } to { opacity: 1; transform: none; } }
+    @keyframes float { 50% { transform: scale(1.04) rotate(2deg); } }
+    @keyframes wheel { to { transform: translate(-50%, 22px); opacity: 0; } }
+
+    @media (max-width: 680px) {
+      section { padding: 70px 16px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .detail { padding: 24px; }
+      .timer { gap: 7px; }
+      .time-box { padding: 16px 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <section class="opening">
+      <div class="opening-card">
+        <div class="eyebrow">Together with their families</div>
+        <h1>Ahmed <span class="amp">&amp;</span> Amany</h1>
+        <div class="subtitle">invite you to the beginning of their</div>
+        <div class="forever">Forever</div>
+        <a class="scroll" href="#invitation"><span></span> Explore invitation</a>
+      </div>
+    </section>
+
+    <section class="intro" id="invitation">
+      <div class="container reveal">
+        <div class="art">
+          <img src="invitation.jpg" alt="Ahmed and Amany wedding invitation artwork">
+        </div>
+        <div style="margin-top:55px">
+          <div class="kicker">Love brought us together</div>
+          <h2>And we'd love you to celebrate with us.</h2>
+          <p class="love">
+            A new chapter begins, and your presence would make our day even more special.
+            Join us as we celebrate the beginning of our forever.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="container reveal">
+        <div class="kicker" style="text-align:center">Save the date</div>
+        <h2 style="text-align:center">The Wedding</h2>
+        <div class="detail-grid">
+          <div class="detail">
+            <div class="detail-icon">♡</div>
+            <div class="detail-label">Day</div>
+            <div class="detail-value">Tuesday</div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">✦</div>
+            <div class="detail-label">Date</div>
+            <div class="detail-value">10 November 2026</div>
+          </div>
+          <div class="detail">
+            <div class="detail-icon">◷</div>
+            <div class="detail-label">Time</div>
+            <div class="detail-value">07:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="countdown">
+      <div class="container reveal">
+        <div class="kicker" style="color:#e8b8b1">Counting the moments</div>
+        <h2>Until Forever</h2>
+        <div class="timer">
+          <div class="time-box"><span class="time-number" id="days">--</span><span class="time-label">Days</span></div>
+          <div class="time-box"><span class="time-number" id="hours">--</span><span class="time-label">Hours</span></div>
+          <div class="time-box"><span class="time-number" id="minutes">--</span><span class="time-label">Minutes</span></div>
+          <div class="time-box"><span class="time-number" id="seconds">--</span><span class="time-label">Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="venue">
+      <div class="container reveal">
+        <div class="kicker">Join us</div>
+        <h2>Our Venue</h2>
+        <div class="venue-card">
+          <div class="venue-name">Rehana Villa</div>
+          <div class="venue-address">Harraneya, Saqqara, Al Giza</div>
+          <a class="map-btn" href="https://maps.app.goo.gl/JfPPPxo6wBsEEuVb6?g_st=ic" target="_blank" rel="noopener">
+            Open location in Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="reveal">
+        <div class="kicker" style="color:#f0c8c2">Ahmed &amp; Amany</div>
+        <h2>See you there</h2>
+        <div class="forever">Until forever ♡</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Ahmed &amp; Amany • 10 November 2026</footer>
+
+  <script>
+    const target = new Date("2026-11-10T19:00:00+02:00").getTime();
+
+    function updateCountdown() {
+      const diff = target - Date.now();
+      const d = Math.max(0, diff);
+      const days = Math.floor(d / 86400000);
+      const hours = Math.floor((d % 86400000) / 3600000);
+      const minutes = Math.floor((d % 3600000) / 60000);
+      const seconds = Math.floor((d % 60000) / 1000);
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
