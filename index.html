@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#f4d6cc">
   <meta name="description" content="Ahmed & Amany — Wedding Invitation">
   <title>Ahmed & Amany | Wedding Invitation</title>
+
+  <!-- Open Graph Meta Tags for WhatsApp & Social Previews -->
+  <meta property="og:title" content="Ahmed & Amany's Wedding Invitation">
+  <meta property="og:description" content="Tuesday, 10 November 2026 at Rehana Villa, Saqqara. Join us in celebrating our forever!">
+  <meta property="og:image" content="https://ahmedafawzy.github.io/ahmed-amani-invitation/invitation.jpg">
+  <meta property="og:url" content="https://ahmedafawzy.github.io/ahmed-amani-invitation/">
+  <meta property="og:type" content="website">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap');
 
@@ -327,7 +335,7 @@
 </head>
 <body>
 
-  <!-- Background Audio Element with Autoplay -->
+  <!-- Background Audio Element -->
   <audio id="bgSong" src="song.mp3" loop preload="auto"></audio>
 
   <!-- Floating Music Toggle Button -->
@@ -465,18 +473,16 @@
       }
     }
 
-    // Try playing immediately on load
     window.addEventListener("load", () => {
       playMusic();
     });
 
-    // Ensure music starts on the very first touch/click anywhere on the page if browser blocked autoplay
     document.body.addEventListener("click", () => {
       playMusic();
     }, { once: true });
 
     musicToggle.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent triggering the body click event twice
+      e.stopPropagation();
       if (!isPlaying) {
         playMusic();
       } else {
