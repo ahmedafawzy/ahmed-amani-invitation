@@ -327,7 +327,7 @@
 </head>
 <body>
 
-  <!-- Background Audio Element -->
+  <!-- Background Audio Element with Autoplay -->
   <audio id="bgSong" src="song.mp3" loop preload="auto"></audio>
 
   <!-- Floating Music Toggle Button -->
@@ -448,20 +448,37 @@
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    // Music Player Control Logic
+    // Auto-play music setup & Interaction trigger
     const bgSong = document.getElementById("bgSong");
     const musicToggle = document.getElementById("musicToggle");
     let isPlaying = false;
 
-    musicToggle.addEventListener("click", () => {
+    function playMusic() {
       if (!isPlaying) {
         bgSong.play().then(() => {
           isPlaying = true;
           musicToggle.classList.add("playing");
           musicToggle.innerHTML = "❚❚";
         }).catch(err => {
-          console.log("Playback prevented:", err);
+          console.log("Autoplay waiting for user interaction:", err);
         });
+      }
+    }
+
+    // Try playing immediately on load
+    window.addEventListener("load", () => {
+      playMusic();
+    });
+
+    // Ensure music starts on the very first touch/click anywhere on the page if browser blocked autoplay
+    document.body.addEventListener("click", () => {
+      playMusic();
+    }, { once: true });
+
+    musicToggle.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent triggering the body click event twice
+      if (!isPlaying) {
+        playMusic();
       } else {
         bgSong.pause();
         isPlaying = false;
