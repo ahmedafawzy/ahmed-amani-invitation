@@ -272,6 +272,39 @@
       text-transform: uppercase;
     }
 
+    /* Floating Music Button Styles */
+    .music-float-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      background: var(--rose-dark);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(140, 75, 81, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .music-float-btn:hover {
+      transform: scale(1.1);
+      background: #6e393f;
+    }
+    .music-float-btn.playing {
+      animation: pulseMusic 2s infinite;
+    }
+    @keyframes pulseMusic {
+      0% { box-shadow: 0 0 0 0 rgba(140, 75, 81, 0.5); }
+      70% { box-shadow: 0 0 0 15px rgba(140, 75, 81, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(140, 75, 81, 0); }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(35px);
@@ -293,6 +326,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Background Audio Element -->
+  <audio id="bgSong" src="song.mp3" loop preload="auto"></audio>
+
+  <!-- Floating Music Toggle Button -->
+  <button id="musicToggle" class="music-float-btn" title="Play/Pause Music">♫</button>
 
   <main>
     <section class="opening">
@@ -408,6 +447,28 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // Music Player Control Logic
+    const bgSong = document.getElementById("bgSong");
+    const musicToggle = document.getElementById("musicToggle");
+    let isPlaying = false;
+
+    musicToggle.addEventListener("click", () => {
+      if (!isPlaying) {
+        bgSong.play().then(() => {
+          isPlaying = true;
+          musicToggle.classList.add("playing");
+          musicToggle.innerHTML = "❚❚";
+        }).catch(err => {
+          console.log("Playback prevented:", err);
+        });
+      } else {
+        bgSong.pause();
+        isPlaying = false;
+        musicToggle.classList.remove("playing");
+        musicToggle.innerHTML = "♫";
+      }
+    });
   </script>
 </body>
 </html>
